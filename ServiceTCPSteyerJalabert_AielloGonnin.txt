@@ -1,0 +1,42 @@
+﻿# teamAT-AT
+
+
+Description du protocole Client-Server utilisant la sérialisation chaine.
+
+
+Utilisation du format JSON pour la structure de transfert.
+
+Structure Participant :
+	- Identifiant
+	- Nom étudiant
+	- Adresse E-mail
+
+Structure Idée : 
+	- Identifiant
+	- Titre
+	- Description
+	- Technologies (liste)
+	- Nom de l'étudiant
+	- Adresse mail
+	- Liste des étudiants interessés (initialisé avec le premier étudiant)
+
+Requètes clients :
+	
+ADD [Titre Idée, Description, Technologies, Nom de ]'étudiant, mail]
+	Ajoute une idée dans la base de donnée.
+
+LIST
+	Renvois la liste toutes les idées présentes dans la base de donnée.
+
+LIST [Identifiant Idée] 
+	Renvois la liste les étudiants interessés par une idée donnée.
+
+PARTICIPE [Identifiant Idée, mail étudiant]
+	Inscrit un participant à une idée.
+	
+Réponses servers:
+
+OK : La requete s'est executée correctement.
+
+BAD REQUEST : Requètes non connu ou mal écrite.
+
