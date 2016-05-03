@@ -14,28 +14,26 @@ import java.net.*;
 public class ClientAT {
 
     public static void main(String[] zero) {
-
-
-        Socket socket;
+        Socket socks;
         BufferedReader in;
         PrintWriter out;
-
+        
         try {
-
-            socket = new Socket(InetAddress.getLocalHost(),2009);
+            socks = new Socket("localhost",9999);
             System.out.println("Demande de connexion");
-
-            in = new BufferedReader (new InputStreamReader (socket.getInputStream()));
-            String message_distant = in.readLine();
-            System.out.println(message_distant);
-
-            socket.close();
-
+            in = new BufferedReader (new InputStreamReader (socks.getInputStream()));
+            out = new PrintWriter(socks.getOutputStream());
+            out.println("XD LOL PTDR");
+            out.flush();
+            
+            //String message = in.readLine();
+         //   System.out.println(message);
+            
+            
+            socks.close();
         }catch (UnknownHostException e) {
-
             e.printStackTrace();
         }catch (IOException e) {
-
             e.printStackTrace();
         }
     }

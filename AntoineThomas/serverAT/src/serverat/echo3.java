@@ -9,27 +9,28 @@ import java.net.Socket;
 public class echo3 {
 
     public static void main(String[] zero) {
-
-        ServerSocket socketserver  ;
-        Socket socketduserveur ;
+        ServerSocket serv  ;
+        Socket socks ;
         BufferedReader in;
         PrintWriter out;
-
         try {
-
-            socketserver = new ServerSocket(2009);
-            System.out.println("Le serveur est à l'écoute du port "+socketserver.getLocalPort());
-            socketduserveur = socketserver.accept();
-            System.out.println("Un zéro s'est connecté");
-            out = new PrintWriter(socketduserveur.getOutputStream());
-            out.println("Vous êtes connecté zéro !");
+            serv = new ServerSocket(9999);
+            System.out.println("Serveur lancé sur 9999");
+            socks = serv.accept();
+            System.out.println("Connecté");
+            
+            out = new PrintWriter(socks.getOutputStream());
             out.flush();
-
-            socketduserveur.close();
-            socketserver.close();
+            
+            in  = new BufferedReader(new InputStreamReader(socks.getInputStream()));
+            String recu = in.readLine();
+            
+            System.out.println(recu);
+            
+            socks.close();
+            serv.close();
 
         }catch (IOException e) {
-
             e.printStackTrace();
         }
     }
