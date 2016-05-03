@@ -1,38 +1,37 @@
 package serverat;
 
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 
 public class echo3 {
 
-    public static void main(String args[]) {
-        ServerSocket echoServer = null;
-        String line;
-        BufferedReader is;
-        PrintStream os;
-        Socket clientSocket = null;
+    public static void main(String[] zero) {
+
+        ServerSocket socketserver  ;
+        Socket socketduserveur ;
+        BufferedReader in;
+        PrintWriter out;
+
         try {
-            echoServer = new ServerSocket(9999);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        try {
-            clientSocket = echoServer.accept();
-            is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            os = new PrintStream(clientSocket.getOutputStream());
-            while (true) {
-                line = is.readLine();
-                os.println(line);
-            }
-        } catch (IOException e) {
-            System.out.println(e);
+
+            socketserver = new ServerSocket(2009);
+            System.out.println("Le serveur est à l'écoute du port "+socketserver.getLocalPort());
+            socketduserveur = socketserver.accept();
+            System.out.println("Un zéro s'est connecté");
+            out = new PrintWriter(socketduserveur.getOutputStream());
+            out.println("Vous êtes connecté zéro !");
+            out.flush();
+
+            socketduserveur.close();
+            socketserver.close();
+
+        }catch (IOException e) {
+
+            e.printStackTrace();
         }
     }
+
 }
