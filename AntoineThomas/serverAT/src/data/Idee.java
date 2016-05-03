@@ -23,6 +23,20 @@ public class Idee {
         this.interesses = interesses;
     }
     
-    
-    
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ArrayList<String> getTechnologies() {
+        return technologies;
+    }
+
+    public ArrayList<Participant> getInteresses() {
+        return interesses;
+    }
 }
