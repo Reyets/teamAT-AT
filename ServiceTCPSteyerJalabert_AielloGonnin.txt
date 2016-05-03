@@ -16,8 +16,6 @@ Structure Idée :
 	- Titre
 	- Description
 	- Technologies (liste)
-	- Nom de l'étudiant
-	- Adresse mail
 	- Liste des étudiants interessés (initialisé avec le premier étudiant)
 
 Requètes clients :
