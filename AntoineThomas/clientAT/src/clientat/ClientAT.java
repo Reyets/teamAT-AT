@@ -13,22 +13,32 @@ import java.net.*;
  */
 public class ClientAT {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Socket smtpSocket = null;      // le socket client
-        DataOutputStream os = null; // output stream
-        DataInputStream is = null;    // input stream
+    public static void main(String[] zero) {
+
+
+        Socket socket;
+        BufferedReader in;
+        PrintWriter out;
+
         try {
-            smtpSocket = new Socket("hostname", 9999);
-            os = new DataOutputStream(smtpSocket.getOutputStream());
-            is = new DataInputStream(smtpSocket.getInputStream());
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host: hostname");
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to: hostname");
+
+            socket = new Socket(InetAddress.getLocalHost(),2009);
+            System.out.println("Demande de connexion");
+
+            in = new BufferedReader (new InputStreamReader (socket.getInputStream()));
+            String message_distant = in.readLine();
+            System.out.println(message_distant);
+
+            socket.close();
+
+        }catch (UnknownHostException e) {
+
+            e.printStackTrace();
+        }catch (IOException e) {
+
+            e.printStackTrace();
         }
     }
+
 }
 
