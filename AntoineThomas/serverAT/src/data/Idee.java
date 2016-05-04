@@ -55,6 +55,10 @@ public class Idee {
         return description;
     }
 
+    public int getIdentifiant() {
+        return identifiant;
+    }
+    
     public ArrayList<String> getTechnologies() {
         return technologies;
     }
