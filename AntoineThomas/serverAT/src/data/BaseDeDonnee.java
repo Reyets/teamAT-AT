@@ -50,6 +50,17 @@ public class BaseDeDonnee {
         return tosend;
     }
 
+    public JSONArray getJSONList() throws Exception {
+        JSONArray tosend = new JSONArray();
+
+        for (Idee idee : idees) {
+            tosend.add(idee.toJSON());
+        }
+
+        tosend.add(JSONStatus(true));
+        return tosend;
+    }
+
     public JSONArray getJSONList(int id) throws Exception {
         JSONArray tosend = new JSONArray();
 
