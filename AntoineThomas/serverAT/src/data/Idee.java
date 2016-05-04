@@ -23,6 +23,29 @@ public class Idee {
         this.interesses = interesses;
     }
     
+    public JSONObject toJSON() {
+        JSONObject idee = new JSONObject();
+        JSONObject data = new JSONObject();
+        data.put("identifiant", identifiant);
+        data.put("titre", titre);
+        data.put("description", description);
+        
+        JSONArray techno = new JSONArray();
+        for (String techo : technologies) {
+            techno.add(techo);
+        }
+        data.put("technologies", techno);
+        
+        JSONArray interet = new JSONArray();
+        for (Participant parti : interesses) {
+            interet.add(parti.toJSON());
+        }
+        data.put("interesses", interet);
+        
+        idee.put("Idee", data);
+        return idee;
+    }
+    
 
     public String getTitre() {
         return titre;

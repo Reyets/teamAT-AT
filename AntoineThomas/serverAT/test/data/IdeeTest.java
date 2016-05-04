@@ -5,12 +5,9 @@
  */
 package data;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.ArrayList;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -22,34 +19,28 @@ public class IdeeTest {
       
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
+        ArrayList<String> technos = new ArrayList<>();
+        technos.add("JAVA");
+        technos.add("JSON");
+        ArrayList<Participant> participants = new ArrayList<>();
+        participants.add(new Participant("Thomas Jalabert", "thom.jalabert@gmail", 0));
+        participants.add(new Participant("Antoine Steyer", "antoine.steyer@gmail", 1));
+        id = new Idee(0, "Server Java", "Petit projet client-serveur en java.", technos, participants);
     }
-    
-    @After
-    public void tearDown() {
-    }
+//{"Participant":{"technologies":
+    //["JAVA","JSON",
+    //{"Participant":{"identifiant":0,"nom":"Thomas Jalabert","email":"thom.jalabert@gmail"}},
+    //{"Participant":{"identifiant":1,"nom":"Antoine Steyer","email":"antoine.steyer@gmail"}}]
+    //,"interesses":[],"titre":"titre","identifiant":0,"description":"description"}}
 
     /**
      * Test of toString method, of class Idee.
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        Idee instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(id.toJSON().toJSONString());
     }
     
 }

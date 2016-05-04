@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Created by Antoine on 03/05/2016.
  */
 public class BaseDeDonnee {
-    private ArrayList<Idee> idees;
-    private ArrayList<Participant> participants;
+    private final ArrayList<Idee> idees;
+    private final ArrayList<Participant> participants;
 
     public BaseDeDonnee() {
         this.idees = new ArrayList<>();

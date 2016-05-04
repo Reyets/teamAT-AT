@@ -1,6 +1,5 @@
 package data;
 
-import java.util.Objects;
 import org.json.simple.JSONObject;
 
 /**
@@ -17,7 +16,7 @@ public class Participant {
         this.email = email;
     }
 
-    public JSONObject tojson() {
+    public JSONObject toJSON() {
         JSONObject part = new JSONObject();
         JSONObject data = new JSONObject();
         data.put("identifiant", identifiant);
