@@ -46,21 +46,13 @@ public class Idee {
         return idee;
     }
     
-
-    public String getTitre() {
-        return titre;
+    public void addInteresse(Participant p) {
+        interesses.add(p);
     }
 
-    public String getDescription() {
-        return description;
-    }
 
     public int getIdentifiant() {
         return identifiant;
-    }
-    
-    public ArrayList<String> getTechnologies() {
-        return technologies;
     }
 
     public ArrayList<Participant> getInteresses() {
