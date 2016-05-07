@@ -37,11 +37,10 @@ public class Authentification implements Runnable {
     }
 
     private static void isValid(String order, PrintWriter out) {
-        JSONObject json = new JSONObject(order);
-        String request;
-
         // On cherche quel type de requête
         try {
+            JSONObject json = new JSONObject(order);
+            String request;
             request = json.getString("request");
 
             // On rajout une idée

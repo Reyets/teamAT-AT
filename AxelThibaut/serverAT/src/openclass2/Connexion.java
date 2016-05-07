@@ -27,31 +27,6 @@ public class Connexion implements Runnable {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             sc = new Scanner(System.in);
 
-
-            while(!connect ){
-
-                System.out.println(in.readLine());
-                login = sc.nextLine();
-                out.println(login);
-                out.flush();
-
-                System.out.println(in.readLine());
-                pass = sc.nextLine();
-                out.println(pass);
-                out.flush();
-
-                if(in.readLine().equals("connecte")){
-
-                    System.out.println("Je suis connecté ");
-                    connect = true;
-                }
-
-                else {
-                    System.err.println("Vos informations sont incorrectes ");
-                }
-
-            }
-
             t2 = new Thread(new Chat_ClientServeur(socket));
             t2.start();
 
