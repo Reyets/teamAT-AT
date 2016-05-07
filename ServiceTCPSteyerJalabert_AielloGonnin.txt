@@ -5,6 +5,8 @@ Description du protocole Client-Server utilisant la sérialisation chaine.
 
 
 Utilisation du format JSON pour la structure de transfert.
+Les requetes client ont un mot clé action:requete
+Les requetes server ont un mot clé status:requete
 
 Structure Participant :
 	- Identifiant
@@ -16,20 +18,18 @@ Structure Idée :
 	- Titre
 	- Description
 	- Technologies (liste)
-	- Nom de l'étudiant
-	- Adresse mail
 	- Liste des étudiants interessés (initialisé avec le premier étudiant)
 
 Requètes clients :
 	
-ADD [Titre Idée, Description, Technologies, Nom de ]'étudiant, mail]
+ADD [Titre Idée, Description, Technologies, Nom de l'étudiant, mail]
 	Ajoute une idée dans la base de donnée.
 
 LIST
-	Renvois la liste toutes les idées présentes dans la base de donnée.
+	Renvoie la liste toutes les idées présentes dans la base de donnée.
 
 LIST [Identifiant Idée] 
-	Renvois la liste les étudiants interessés par une idée donnée.
+	Renvoie la liste les étudiants interessés par une idée donnée.
 
 PARTICIPE [Identifiant Idée, mail étudiant]
 	Inscrit un participant à une idée.
@@ -40,3 +40,90 @@ OK : La requete s'est executée correctement.
 
 BAD REQUEST : Requètes non connu ou mal écrite.
 
+
+Exemple de requête du client vers le serveur:
+
+ADD:
+
+[
+	{"idee":
+		{
+		"titre":"server java",
+		"nom":"Gonnin Thibaut",
+		"mail":"thibaut.gonnin@gmail.com",
+		"description":"ceci est une description bla bla bla",
+		"technologies":["JAVA","JSON"]
+		},
+	},
+	{"request":"ADD"}
+]
+
+PARTICIPE:
+
+[
+	{"idee":
+		{
+		"id":5
+		"mail":"thibaut.gonnin@gmail.com"
+		},
+	}
+	{"request":"PARTICIPE"}
+]
+
+LIST:
+
+[
+	{"idee":
+		["server java","server java2","server java3"]
+	},
+	{"request":"LIST"}
+]
+
+LIST:(connaissant une idee)
+
+[
+	{"request":"LIST"}
+]
+
+
+Exemple de réponse du serveur vers le client:
+
+ADD:
+
+[
+	{"status":"OK"}
+]
+
+PARTICIPE:
+
+[
+	{"status":"OK"}
+]
+
+LIST:(retourne toutes les idées)
+
+[
+	{"idee":
+		["server java","server java2","server java3"]
+	},
+	{"status":"OK"}
+]
+
+
+LIST:(connaissant une idee)
+
+[
+	[
+		{"Idee":
+			{"technologies":["JAVA","JSON"],
+			"interesses":[{"Participant":{"identifiant":0,"nom":"Thomas Jalabert","email":"thom.jalabert@gmail"}},{"Participant":{"identifiant":1,"nom":"Antoine Steyer","email":"antoine.steyer@gmail"}}],
+			"titre":"Server Java","identifiant":0,"description":"Petit projet client-serveur en java."}
+		},
+		{"Idee":{"technologies":["JAVA","JSON"],
+		"interesses":[],
+		"titre":"Server Java2",
+		"identifiant":1,
+		"description":"Petit projet client-serveur en java."}}
+	],
+{"status":"OK"}
+]

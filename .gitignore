@@ -1,2 +1,10 @@
 /serverAT/nbproject/private/
 /clientAT/nbproject/private/
+AntoineThomas/clientAT/nbproject/private/private.properties
+AntoineThomas/clientAT/nbproject/private/private.xml
+AntoineThomas/serverAT/nbproject/private/private.properties
+AntoineThomas/serverAT/nbproject/private/private.xml
+/AntoineThomas/serverAT/build/
+/AntoineThomas/clientAT/build/
+/AntoineThomas/clientAT/dist/
+/AntoineThomas/serverAT/dist/
