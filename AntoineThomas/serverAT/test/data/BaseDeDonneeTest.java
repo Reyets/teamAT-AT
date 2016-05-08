@@ -6,6 +6,8 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -49,9 +51,32 @@ public class BaseDeDonneeTest {
     
      @Test
     public void testgetJSONList() {
+        
+        System.out.println(bdd.getJSONList());
         bdd.addIdee(id);
         bdd.addIdee(idempty);
-         System.out.println(bdd.getJSONList());
+        System.out.println(bdd.getJSONList());
+    }
+    
+     @Test
+    public void testgetJSONListID() {
+        bdd.addIdee(id);
+        bdd.addIdee(idempty);
+        try {
+            System.out.println(bdd.getJSONList(1));
+        } catch (Exception ex) {
+            Logger.getLogger(BaseDeDonneeTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void testaddInteresse() {
+        bdd.addIdee(id);
+        bdd.addIdee(idempty);
+        Participant p = new Participant("toto", "email@gmail.com", 5);
+        idempty.addInteresse(p);
+        System.out.println(idempty.toJSON());
+        
     }
     
 }

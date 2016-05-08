@@ -22,7 +22,7 @@ public class Participant {
         data.put("identifiant", identifiant);
         data.put("nom", nom);
         data.put("email", email);
-        part.put("Participant", data);
+        part.put("participant", data);
         return part;
     }
     

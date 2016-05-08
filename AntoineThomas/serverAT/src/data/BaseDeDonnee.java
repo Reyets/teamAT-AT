@@ -24,15 +24,15 @@ public class BaseDeDonnee {
         return idees;
     }
 
-    public JSONArray addIdee(Idee idee) {
-        JSONArray tosend = new JSONArray();
+    public JSONObject addIdee(Idee idee) {
+        JSONObject tosend = new JSONObject();
         idees.add(idee);
-        tosend.add(JSONStatus(true));
+        JSONStatus(tosend, true);
         return tosend;
     }
 
-    public JSONArray addInteresse(Participant p, int id) throws Exception {
-        JSONArray tosend = new JSONArray();
+    public JSONObject addInteresse(Participant p, int id) throws Exception {
+        JSONObject tosend = new JSONObject();
         for (Idee idee : idees) {
             if (idee.getIdentifiant() == id) {
                 if (idee.getInteresses().contains(p)) {
@@ -45,46 +45,44 @@ public class BaseDeDonnee {
         if (tosend.isEmpty()) {
             throw new Exception("Idée Non trouvée");
         } else {
-            tosend.add(JSONStatus(true));
+            JSONStatus(tosend, true);
         }
         return tosend;
     }
 
-    public JSONArray getJSONList() throws Exception {
-        JSONArray tosend = new JSONArray();
-
+    public JSONObject getJSONList() {
+        JSONObject tosent = new JSONObject();
+        JSONArray array = new JSONArray();
         for (Idee idee : idees) {
-            tosend.add(idee.toJSON());
+            array.add(idee.toJSON());
         }
-
-        tosend.add(JSONStatus(true));
-        return tosend;
+        tosent.put("list", array);
+        JSONStatus(tosent, true);
+        return tosent;
     }
 
-    public JSONArray getJSONList(int id) throws Exception {
-        JSONArray tosend = new JSONArray();
+    public JSONObject getJSONList(int id) throws Exception {
+        JSONObject tosend = new JSONObject();
 
         for (Idee idee : idees) {
             if (idee.getIdentifiant() == id) {
-                tosend.add(idee.toJSON());
+                tosend.put("list", idee.toJSON());
             }
         }
         if (tosend.isEmpty()) {
             throw new Exception("Idée Non trouvée");
         } else {
-            tosend.add(JSONStatus(true));
+            JSONStatus(tosend, true);
         }
         return tosend;
     }
 
-    private JSONObject JSONStatus(boolean ok) {
-        JSONObject status = new JSONObject();
+    private void JSONStatus(JSONObject o, boolean ok) {
         if (ok) {
-            status.put("status", "OK");
+            o.put("status", "OK");
         } else {
-            status.put("status", "BAD REQUEST");
+            o.put("status", "BAD REQUEST");
         }
-        return status;
     }
 
 }
