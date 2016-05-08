@@ -7,6 +7,7 @@ package clientat;
 
 import java.io.*;
 import java.net.*;
+import org.json.simple.JSONObject;
 
 /**
  * @author chronos
@@ -36,6 +37,20 @@ public class ClientAT {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private JSONObject getAction(String ask) throws Exception {
+        JSONObject action = new JSONObject();
+        if(ask.equalsIgnoreCase("list")) {
+            action.put("action", "LIST");
+        } else if(ask.equalsIgnoreCase("participe")) {
+            action.put("action", "PARTICIPE");
+        } else if(ask.equalsIgnoreCase("add")) {
+            action.put("action", "ADD");
+        } else {
+            throw new Exception("Unknown action");
+        }
+        return action;
     }
 
 }
