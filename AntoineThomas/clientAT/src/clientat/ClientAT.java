@@ -21,15 +21,18 @@ public class ClientAT {
         
         try {
             socks = new Socket("localhost",9999);
-            System.out.println("Demande de connexion");
+           // System.out.println("Demande de connexion");
             in = new BufferedReader (new InputStreamReader (socks.getInputStream()));
+            String message = in.readLine();
+            System.out.println(message);
             out = new PrintWriter(socks.getOutputStream());
-            out.println("XD LOL PTDR");
+            JSONObject o = new JSONObject();
+            o.put("action", "list");
+            out.println(o.toJSONString());
             out.flush();
-            
-            //String message = in.readLine();
-         //   System.out.println(message);
-            
+             message = in.readLine();
+            System.out.println(message);
+
             
             socks.close();
         }catch (UnknownHostException e) {

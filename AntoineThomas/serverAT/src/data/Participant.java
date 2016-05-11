@@ -15,6 +15,12 @@ public class Participant {
         this.identifiant = identifiant;
         this.email = email;
     }
+    
+    public Participant(JSONObject o, int id) {
+        this.identifiant = id;
+        this.nom = (String) o.get("nom");
+        this.email = (String) o.get("email");
+    }
 
     public JSONObject toJSON() {
         JSONObject part = new JSONObject();

@@ -23,6 +23,25 @@ public class Idee {
         this.interesses = interesses;
     }
     
+    public Idee(JSONObject o, int id, int idparticipant) {
+        this.identifiant = id;
+        id++;
+        this.titre = (String) o.get("titre");
+        this.description = (String) o.get("description");
+        technologies = new ArrayList<>();
+        interesses = new ArrayList<>();
+        for (Object item : ((JSONArray) o.get("technologies"))) {
+            String techno = (String) item;
+            technologies.add(techno);
+        }
+        for (Object item : ((JSONArray) o.get("interesses"))) {
+            Participant p = new Participant((JSONObject) item, id);
+            interesses.add(p);
+            id++;
+        }
+        
+    }
+    
     public JSONObject toJSON() {
         JSONObject idee = new JSONObject();
         JSONObject data = new JSONObject();

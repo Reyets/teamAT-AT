@@ -10,10 +10,14 @@ import org.json.simple.JSONObject;
 public class BaseDeDonnee {
 
     private final ArrayList<Idee> idees;
+    private final int idIdee;
+    private final int idParticipant;
 
     public BaseDeDonnee() {
         super();
         this.idees = new ArrayList<>();
+        idIdee = 0;
+        idParticipant = 0;
     }
 
     public ArrayList<Participant> getParticipantsInteresses(int idIdee) {
@@ -27,8 +31,7 @@ public class BaseDeDonnee {
     public JSONObject addIdee(Idee idee) {
         JSONObject tosend = new JSONObject();
         idees.add(idee);
-        JSONStatus(tosend, true);
-        return tosend;
+        return JSONStatus(tosend, true);
     }
 
     public JSONObject addInteresse(Participant p, int id) throws Exception {
@@ -57,8 +60,7 @@ public class BaseDeDonnee {
             array.add(idee.toJSON());
         }
         tosent.put("list", array);
-        JSONStatus(tosent, true);
-        return tosent;
+        return JSONStatus(tosent, true);
     }
 
     public JSONObject getJSONList(int id) throws Exception {
@@ -77,12 +79,13 @@ public class BaseDeDonnee {
         return tosend;
     }
 
-    private void JSONStatus(JSONObject o, boolean ok) {
+    public JSONObject JSONStatus(JSONObject o, boolean ok) {
         if (ok) {
             o.put("status", "OK");
         } else {
             o.put("status", "BAD REQUEST");
         }
+        return o;
     }
 
 }
