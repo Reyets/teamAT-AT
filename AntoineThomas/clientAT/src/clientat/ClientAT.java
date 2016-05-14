@@ -17,20 +17,20 @@ public class ClientAT {
     public static void main(String[] zero) {
         Socket socks;
         BufferedReader in;
-        PrintWriter out;
+        BufferedWriter out;
         
         try {
             socks = new Socket("localhost",9999);
-           // System.out.println("Demande de connexion");
-            in = new BufferedReader (new InputStreamReader (socks.getInputStream()));
-            String message = in.readLine();
-            System.out.println(message);
-            out = new PrintWriter(socks.getOutputStream());
+            System.out.println("Demande de connexion");            
+            out = new BufferedWriter(new OutputStreamWriter(socks.getOutputStream()));
             JSONObject o = new JSONObject();
             o.put("action", "list");
-            out.println(o.toJSONString());
+            out.write(o.toJSONString());
             out.flush();
-             message = in.readLine();
+            
+            in = new BufferedReader (new InputStreamReader (socks.getInputStream()));
+            String message = in.readLine();
+            message = in.readLine();
             System.out.println(message);
 
             

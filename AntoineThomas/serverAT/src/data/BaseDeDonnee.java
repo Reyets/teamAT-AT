@@ -1,8 +1,12 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+import serverat.ServerAT;
 
 /**
  * Created by Antoine on 03/05/2016.
@@ -19,6 +23,8 @@ public class BaseDeDonnee {
         idIdee = 0;
         idParticipant = 0;
     }
+    
+    
 
     public ArrayList<Participant> getParticipantsInteresses(int idIdee) {
         return idees.get(idIdee).getInteresses();

@@ -11,36 +11,47 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class serverAT {
+public class ServerAT {
+    private final BaseDeDonnee bdd;
+    private final JSONParser parser;
 
-    private final BaseDeDonnee bdd = new BaseDeDonnee();
-    private final JSONParser parser = new JSONParser();
+    public static void main(String[] zero) {
+        ServerAT at = new ServerAT();
+        at.init();
+    }
 
-    public  void main(String[] zero) {
+    public ServerAT() {
+        bdd = new BaseDeDonnee();
+        parser = new JSONParser();
+    }
+    
+    public void init() {
         ServerSocket serv;
         Socket socks;
         BufferedReader in;
-        PrintWriter out;
+        BufferedWriter out;
         try {
             serv = new ServerSocket(9999);
             socks = serv.accept();
-
-            out = new PrintWriter(socks.getOutputStream());
-            out.println("Connecté");
-            out.flush();
-
+            System.out.println(socks.getInetAddress() + " Connecté");
+           
             in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
-            String recu = in.readLine();
+            String recu = in.readLine();            
             JSONObject reponse = managecall(recu);
-            out.println(reponse.toJSONString());
-            System.out.println("reponse : " + reponse);
+            System.out.println("reponse : " + reponse.toJSONString());
             System.out.println("recu : "  + recu);
+            
+            out = new BufferedWriter(new OutputStreamWriter(socks.getOutputStream()));
+            out.write(reponse.toJSONString());
+            out.flush();
+            
             socks.close();
             serv.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
 
     private JSONObject managecall(String in) {
@@ -62,11 +73,9 @@ public class serverAT {
                     return bdd.JSONStatus(new JSONObject(), false);
                 }
             }
-
         } catch (ParseException ex) {
-            Logger.getLogger(serverAT.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServerAT.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return bdd.JSONStatus(new JSONObject(), true);
     }
 
