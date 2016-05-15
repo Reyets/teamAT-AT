@@ -30,10 +30,8 @@ public class ClientAT {
             
             in = new BufferedReader (new InputStreamReader (socks.getInputStream()));
             String message = in.readLine();
-            message = in.readLine();
             System.out.println(message);
 
-            
             socks.close();
         }catch (UnknownHostException e) {
             e.printStackTrace();
