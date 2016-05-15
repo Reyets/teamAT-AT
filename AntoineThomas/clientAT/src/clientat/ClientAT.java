@@ -17,21 +17,19 @@ public class ClientAT {
     public static void main(String[] zero) {
         Socket socks;
         BufferedReader in;
-        BufferedWriter out;
+        PrintWriter out;
         
         try {
             socks = new Socket("localhost",9999);
-            System.out.println("Demande de connexion");            
-            out = new BufferedWriter(new OutputStreamWriter(socks.getOutputStream()));
+            System.out.println("Connecté");            
+            out = new PrintWriter(socks.getOutputStream());
             JSONObject o = new JSONObject();
             o.put("action", "list");
-            out.write(o.toJSONString());
+            out.println(o.toJSONString());
             out.flush();
-            
-            in = new BufferedReader (new InputStreamReader (socks.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
             String message = in.readLine();
             System.out.println(message);
-
             socks.close();
         }catch (UnknownHostException e) {
             e.printStackTrace();

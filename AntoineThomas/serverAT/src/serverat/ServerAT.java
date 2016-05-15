@@ -29,20 +29,19 @@ public class ServerAT {
         ServerSocket serv;
         Socket socks;
         BufferedReader in;
-        BufferedWriter out;
+        PrintWriter out;
         try {
             serv = new ServerSocket(9999);
             socks = serv.accept();
-            System.out.println(socks.getInetAddress() + " Connecté");
-           
             in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
-            String recu = in.readLine();            
+            System.out.println(socks.getInetAddress() + " Connecté");
+            String recu = in.readLine();
             JSONObject reponse = managecall(recu);
-            System.out.println("reponse : " + reponse.toJSONString());
             System.out.println("recu : "  + recu);
+            System.out.println("reponse : " + reponse.toJSONString());
             
-            out = new BufferedWriter(new OutputStreamWriter(socks.getOutputStream()));
-            out.write(reponse.toJSONString());
+            out = new PrintWriter(socks.getOutputStream());
+            out.println(reponse.toJSONString());
             out.flush();
             
             socks.close();
