@@ -103,7 +103,7 @@ public class ClientAT {
         Scanner scan = new Scanner(System.in);
         System.out.println("----| Participation |----");
         System.out.println("Saisissez l'identifiant de l'idée : ");
-        int id = scan.nextInt();
+        String id = scan.nextLine();
         System.out.println("Saisissez votre adresse email : ");
         String mail = scan.nextLine();
 
