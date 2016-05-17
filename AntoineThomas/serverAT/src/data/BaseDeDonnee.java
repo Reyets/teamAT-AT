@@ -14,8 +14,8 @@ import serverat.ServerAT;
 public class BaseDeDonnee {
 
     private final ArrayList<Idee> idees;
-    private final int idIdee;
-    private final int idParticipant;
+    private int idIdee;
+    private int idParticipant;
 
     public BaseDeDonnee() {
         super();
@@ -34,9 +34,10 @@ public class BaseDeDonnee {
         return idees;
     }
 
-    public JSONObject addIdee(Idee idee) {
+    public JSONObject addIdee(JSONObject idee) {
         JSONObject tosend = new JSONObject();
-        idees.add(idee);
+        idIdee++;
+        idees.add(new Idee(idee, idIdee));
         return JSONStatus(tosend, true);
     }
 

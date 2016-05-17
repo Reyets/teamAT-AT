@@ -23,7 +23,7 @@ public class Idee {
         this.interesses = interesses;
     }
     
-    public Idee(JSONObject o, int id, int idparticipant) {
+    public Idee(JSONObject o, int id) {
         this.identifiant = id;
         id++;
         this.titre = (String) o.get("titre");
