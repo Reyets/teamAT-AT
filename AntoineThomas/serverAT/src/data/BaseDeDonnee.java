@@ -3,6 +3,7 @@ package data;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -25,8 +26,7 @@ public class BaseDeDonnee {
         idIdee = 0;
         idParticipant = 0;
     }
-    
-    
+
 
     public ArrayList<Participant> getParticipantsInteresses(int idIdee) {
         return idees.get(idIdee).getInteresses();
@@ -46,20 +46,20 @@ public class BaseDeDonnee {
     public JSONObject participe(JSONObject o) throws Exception {
         //Participant p, int id
         JSONObject p = (JSONObject) o.get("idee");
-        
+
         int id = (int) p.get("identifiant");
         String mail = (String) p.get("mail");
         for (Participant parti : participants) {
-            if(parti.getEmail().equalsIgnoreCase(mail)) {
+            if (parti.getEmail().equalsIgnoreCase(mail)) {
                 return addInteresse(parti, id);
             }
         }
-        
+
         throw new Exception("Participant non trouvé !");
     }
-    
+
     private JSONObject addInteresse(Participant p, int id) throws Exception {
-        
+
         JSONObject tosend = new JSONObject();
         for (Idee idee : idees) {
             if (idee.getIdentifiant() == id) {

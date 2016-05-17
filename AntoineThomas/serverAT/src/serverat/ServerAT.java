@@ -2,11 +2,13 @@ package serverat;
 
 import data.BaseDeDonnee;
 import data.Participant;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -24,7 +26,7 @@ public class ServerAT {
         bdd = new BaseDeDonnee();
         parser = new JSONParser();
     }
-    
+
     public void init() {
         ServerSocket serv;
         Socket socks;
@@ -37,37 +39,38 @@ public class ServerAT {
             System.out.println(socks.getInetAddress() + " Connecté");
             String recu = in.readLine();
             JSONObject reponse = managecall(recu);
-            System.out.println("recu : "  + recu);
+            System.out.println("recu : " + recu);
             System.out.println("reponse : " + reponse.toJSONString());
-            
+
             out = new PrintWriter(socks.getOutputStream());
             out.println(reponse.toJSONString());
             out.flush();
-            
+
             socks.close();
             serv.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     private JSONObject managecall(String in) {
         try {
-            JSONObject get = (JSONObject) parser.parse(in);
-            if (!get.containsKey("action")) {
+
+            JSONObject jsonObject = (JSONObject) parser.parse(in);
+            if (!jsonObject.containsKey("request")) {
                 return bdd.JSONStatus(new JSONObject(), false);
             } else {
-                String action = (String) get.get("action");
+                String action = (String) jsonObject.get("request");
                 if (action.equalsIgnoreCase("list")) {
                     return bdd.JSONStatus(bdd.getJSONList(), true);
                 } else if (action.equalsIgnoreCase("participe")) {
-                   JSONObject p = (JSONObject) get.get("participant");
-                   return bdd.participe(p);
+                    JSONObject p = (JSONObject) jsonObject.get("participant");
+                    return bdd.participe(p);
                 } else if (action.equalsIgnoreCase("add")) {
-                   JSONObject p = (JSONObject) get.get("idee");
-                   return bdd.addIdee(p);
+                    JSONObject p = (JSONObject) jsonObject.get("idee");
+                    return bdd.addIdee(p);
                 } else {
                     return bdd.JSONStatus(new JSONObject(), false);
                 }

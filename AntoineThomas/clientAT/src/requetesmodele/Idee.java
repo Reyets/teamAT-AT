@@ -55,9 +55,9 @@ public class Idee {
         for(String tech : technos) {
             techs.add(tech);
         }
-        idee.put("technologies",techs.toString());
+        idee.put("technologies",techs);
 
-        result.put("idee",idee.toString());
+        result.put("idee",idee);
         result.put("request","ADD");
         return result;
     }

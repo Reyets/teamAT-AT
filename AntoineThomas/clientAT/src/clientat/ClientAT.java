@@ -26,6 +26,7 @@ public class ClientAT {
             out = new PrintWriter(socks.getOutputStream());
             Idee idee = new Idee();
             JSONObject o = idee.toJSON();
+
             out.println(o.toString());
             out.flush();
             in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
