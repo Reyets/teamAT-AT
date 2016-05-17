@@ -45,17 +45,24 @@ public class BaseDeDonnee {
 
     public JSONObject participe(JSONObject o) throws Exception {
         //Participant p, int id
-        JSONObject p = (JSONObject) o.get("idee");
-
-        int id = (int) p.get("identifiant");
-        String mail = (String) p.get("mail");
+        int id = ((Long) o.get("identifiant")).intValue();
+        System.out.println("aaa");
+        String mail = (String) o.get("mail");
+        System.out.println("aaa");
+        
+        
         for (Participant parti : participants) {
             if (parti.getEmail().equalsIgnoreCase(mail)) {
                 return addInteresse(parti, id);
             }
         }
-
-        throw new Exception("Participant non trouvé !");
+        
+        // participant non trouvé
+        Participant p = new Participant(mail, idParticipant++);
+        this.participants.add(p);
+        return addInteresse(p, id);
+        
+        
     }
 
     private JSONObject addInteresse(Participant p, int id) throws Exception {

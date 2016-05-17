@@ -16,6 +16,10 @@ public class Participant {
         this.email = email;
     }
     
+    public Participant(String email, int identifiant) {
+        this("", email, identifiant);
+    }
+    
     public Participant(JSONObject o, int id) {
         this.identifiant = id;
         this.nom = (String) o.get("nom");

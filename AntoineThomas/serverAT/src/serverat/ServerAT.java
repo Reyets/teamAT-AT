@@ -37,8 +37,8 @@ public class ServerAT {
         try {
             serv = new ServerSocket(9999);
             System.out.println("Server LAUNCH FAGGOT !");
-            while (true) {
-                socks = serv.accept();
+            socks = serv.accept();
+            while (true) {                
                 in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
                 System.out.println(socks.getInetAddress() + " Connecté");
                 String recu = in.readLine();
@@ -46,6 +46,9 @@ public class ServerAT {
                 if (recu.equalsIgnoreCase("quit")) {
                     break;
                 }
+                
+                JSONObject a = new JSONObject();
+                a.put("request", "list");
                 JSONObject reponse = managecall(recu);
                 System.out.println("recu : " + recu);
                 System.out.println("reponse : " + reponse.toJSONString());
@@ -53,8 +56,10 @@ public class ServerAT {
                 out = new PrintWriter(socks.getOutputStream());
                 out.println(reponse.toJSONString());
                 out.flush();
-                socks.close();
+                
             }
+            socks.close();
+            
             serv.close();
 
         } catch (IOException e) {
@@ -69,13 +74,16 @@ public class ServerAT {
             JSONObject jsonObject = (JSONObject) parser.parse(in);
             if (!jsonObject.containsKey("request")) {
                 return bdd.JSONStatus(new JSONObject(), false);
+                
             } else {
                 String action = (String) jsonObject.get("request");
                 if (action.equalsIgnoreCase("list")) {
                     return bdd.JSONStatus(bdd.getJSONList(), true);
+                    
                 } else if (action.equalsIgnoreCase("participe")) {
-                    JSONObject p = (JSONObject) jsonObject.get("participant");
+                    JSONObject p = (JSONObject) jsonObject.get("idee");
                     return bdd.participe(p);
+                    
                 } else if (action.equalsIgnoreCase("add")) {
                     JSONObject p = (JSONObject) jsonObject.get("idee");
                     return bdd.addIdee(p);
@@ -86,6 +94,7 @@ public class ServerAT {
         } catch (ParseException ex) {
             Logger.getLogger(ServerAT.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
+            ex.printStackTrace();
             return bdd.JSONStatus(new JSONObject(), false);
         }
         return bdd.JSONStatus(new JSONObject(), true);
