@@ -76,6 +76,7 @@ public class ClientAT {
         System.out.println("Commandes disponibles : ");
         System.out.println("\t- add");
         System.out.println("\t- participe");
+        System.out.println("\t- list");
         System.out.println("\t- quit");
         System.out.println();
     }
@@ -91,6 +92,9 @@ public class ClientAT {
                 break;
             case "participe":
                 commande = creerParticipation();
+                break;
+            case "list":
+                commande = liste();
                 break;
             case "help":
                 printhelp();
@@ -121,6 +125,12 @@ public class ClientAT {
         result.put("idee", idee);
         result.put("request", "PARTICIPE");
 
+        return result;
+    }
+
+    private JSONObject liste() {
+        JSONObject result = new JSONObject();
+        result.put("request","LIST");
         return result;
     }
 
