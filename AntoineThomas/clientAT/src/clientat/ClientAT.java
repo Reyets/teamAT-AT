@@ -30,25 +30,16 @@ public class ClientAT {
             System.out.println("Connecté");
             out = new PrintWriter(socks.getOutputStream());
 
-            JSONObject o = getStandardIdee();
-           
-            out.println(o.toString());
-            out.flush();
-            confirm(in, socks);
-
-            while (client.getSaisie()) {
-
-                out.println(client.getCommande().toString());
-                out.flush();
-
-                confirm(in, socks);
-
-//                JSONObject o = getStandardIdee();
+//            JSONObject o = getStandardIdee();
+//           
 //            out.println(o.toString());
 //            out.flush();
-//            
 //            confirm(in, socks);
-//            socks.close();
+
+            while (client.getSaisie()) {
+                out.println(client.getCommande().toString());
+                out.flush();
+                confirm(in, socks);
             }
             out.println("quit");
             out.flush();

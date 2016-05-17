@@ -38,11 +38,10 @@ public class ServerAT {
             serv = new ServerSocket(9999);
             System.out.println("Server LAUNCH FAGGOT !");
             socks = serv.accept();
+            System.out.println(socks.getInetAddress() + " Connecté");
             while (true) {                
                 in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
-                System.out.println(socks.getInetAddress() + " Connecté");
                 String recu = in.readLine();
-
                 if (recu.equalsIgnoreCase("quit")) {
                     break;
                 }

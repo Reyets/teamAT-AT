@@ -37,19 +37,16 @@ public class BaseDeDonnee {
     }
 
     public JSONObject addIdee(JSONObject idee) {
-        JSONObject tosend = new JSONObject();
-        idIdee++;
+        JSONObject tosend = new JSONObject(); 
         idees.add(new Idee(idee, idIdee));
+        idIdee++;
         return JSONStatus(tosend, true);
     }
 
     public JSONObject participe(JSONObject o) throws Exception {
         //Participant p, int id
         int id = ((Long) o.get("identifiant")).intValue();
-        System.out.println("aaa");
         String mail = (String) o.get("mail");
-        System.out.println("aaa");
-        
         
         for (Participant parti : participants) {
             if (parti.getEmail().equalsIgnoreCase(mail)) {
@@ -67,30 +64,29 @@ public class BaseDeDonnee {
 
     private JSONObject addInteresse(Participant p, int id) throws Exception {
 
-        JSONObject tosend = new JSONObject();
+        
         for (Idee idee : idees) {
             if (idee.getIdentifiant() == id) {
                 if (idee.getInteresses().contains(p)) {
                     throw new Exception("Participant déja interessé !");
                 } else {
                     idee.addInteresse(p);
+                    
+                    return JSONStatus( new JSONObject(), true);
                 }
             }
         }
-        if (tosend.isEmpty()) {
-            throw new Exception("Idée Non trouvée");
-        } else {
-            JSONStatus(tosend, true);
-        }
-        return tosend;
+      
+        throw new Exception("Idée Non trouvée");
+        
     }
 
     public JSONObject getJSONList() {
         JSONObject tosent = new JSONObject();
         JSONArray array = new JSONArray();
-        for (Idee idee : idees) {
+        idees.stream().forEach((idee) -> {
             array.add(idee.toJSON());
-        }
+        });
         tosent.put("list", array);
         return JSONStatus(tosent, true);
     }
@@ -98,11 +94,9 @@ public class BaseDeDonnee {
     public JSONObject getJSONList(int id) throws Exception {
         JSONObject tosend = new JSONObject();
 
-        for (Idee idee : idees) {
-            if (idee.getIdentifiant() == id) {
-                tosend.put("list", idee.toJSON());
-            }
-        }
+        idees.stream().filter((idee) -> (idee.getIdentifiant() == id)).forEach((idee) -> {
+            tosend.put("list", idee.toJSON());
+        });
         if (tosend.isEmpty()) {
             throw new Exception("Idée Non trouvée");
         } else {
