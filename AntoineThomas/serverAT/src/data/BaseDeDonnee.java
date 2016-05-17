@@ -14,12 +14,14 @@ import serverat.ServerAT;
 public class BaseDeDonnee {
 
     private final ArrayList<Idee> idees;
+    private final ArrayList<Participant> participants;
     private int idIdee;
     private int idParticipant;
 
     public BaseDeDonnee() {
         super();
         this.idees = new ArrayList<>();
+        this.participants = new ArrayList<>();
         idIdee = 0;
         idParticipant = 0;
     }
@@ -41,7 +43,23 @@ public class BaseDeDonnee {
         return JSONStatus(tosend, true);
     }
 
-    public JSONObject addInteresse(Participant p, int id) throws Exception {
+    public JSONObject participe(JSONObject o) throws Exception {
+        //Participant p, int id
+        JSONObject p = (JSONObject) o.get("idee");
+        
+        int id = (int) p.get("identifiant");
+        String mail = (String) p.get("mail");
+        for (Participant parti : participants) {
+            if(parti.getEmail().equalsIgnoreCase(mail)) {
+                return addInteresse(parti, id);
+            }
+        }
+        
+        throw new Exception("Participant non trouvé !");
+    }
+    
+    private JSONObject addInteresse(Participant p, int id) throws Exception {
+        
         JSONObject tosend = new JSONObject();
         for (Idee idee : idees) {
             if (idee.getIdentifiant() == id) {

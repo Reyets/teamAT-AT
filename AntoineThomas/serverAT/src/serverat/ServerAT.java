@@ -64,7 +64,7 @@ public class ServerAT {
                     return bdd.JSONStatus(bdd.getJSONList(), true);
                 } else if (action.equalsIgnoreCase("participe")) {
                     JSONObject p = (JSONObject) get.get("participant");
-                  //  bdd.JSONStatus(bdd.addInteresse(p, 0), true);
+                    bdd.JSONStatus(bdd.participe(p), true);
                 } else if (action.equalsIgnoreCase("add")) {
                    JSONObject p = (JSONObject) get.get("idee");
                    bdd.JSONStatus(bdd.addIdee(p), true);
@@ -74,6 +74,8 @@ public class ServerAT {
             }
         } catch (ParseException ex) {
             Logger.getLogger(ServerAT.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            return bdd.JSONStatus(new JSONObject(), false);
         }
         return bdd.JSONStatus(new JSONObject(), true);
     }

@@ -22,6 +22,12 @@ public class Participant {
         this.email = (String) o.get("email");
     }
 
+    public String getEmail() {
+        return email;
+    }
+    
+    
+
     public JSONObject toJSON() {
         JSONObject part = new JSONObject();
         JSONObject data = new JSONObject();
