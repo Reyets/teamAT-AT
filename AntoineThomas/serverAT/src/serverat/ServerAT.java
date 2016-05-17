@@ -63,11 +63,11 @@ public class ServerAT {
                 if (action.equalsIgnoreCase("list")) {
                     return bdd.JSONStatus(bdd.getJSONList(), true);
                 } else if (action.equalsIgnoreCase("participe")) {
-                    JSONObject p = (JSONObject) get.get("participant");
-                    bdd.JSONStatus(bdd.participe(p), true);
+                   JSONObject p = (JSONObject) get.get("participant");
+                   return bdd.participe(p);
                 } else if (action.equalsIgnoreCase("add")) {
                    JSONObject p = (JSONObject) get.get("idee");
-                   bdd.JSONStatus(bdd.addIdee(p), true);
+                   return bdd.addIdee(p);
                 } else {
                     return bdd.JSONStatus(new JSONObject(), false);
                 }
