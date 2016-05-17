@@ -24,8 +24,6 @@ public class Authentification implements Runnable {
             out = new PrintWriter(socket.getOutputStream());
 
             while(true){
-                out.println("Entrez votre demande :");
-                out.flush();
                 order = in.readLine();
 
                 isValid(order, out);
@@ -49,7 +47,7 @@ public class Authentification implements Runnable {
                 try {
                     idee = json.getJSONObject("idee");
                     try {
-                        FileWriter fx = new FileWriter("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/idea.txt", true);
+                        FileWriter fx = new FileWriter("serverAT/ressources/idea.txt", true);
                         fx.write(idee.toString());
                         fx.write("\n");
                         fx.close();
@@ -88,7 +86,7 @@ public class Authentification implements Runnable {
                     //{"idee":["server java","server java2","server java3"],"status":"OK"}
                     try {
                         String message = "{\"list\":[";
-                        Scanner sc = new Scanner(new File("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/idea.txt"));
+                        Scanner sc = new Scanner(new File("serverAT/ressources/idea.txt"));
                         while(sc.hasNext()){
                             message = message + "{\"idee\":" + sc.nextLine() + "},";
                         }
@@ -120,6 +118,13 @@ public class Authentification implements Runnable {
             out.println("{\"status\":\"BAD REQUEST\"}");
             out.flush();
             return;
+        }
+
+        catch(NullPointerException e){
+            out.println("{\"status\":\"BAD REQUEST\"}");
+            out.flush();
+            return;
+
         }
         out.println("{\"status\":\"BAD REQUEST\"}");
         out.flush();

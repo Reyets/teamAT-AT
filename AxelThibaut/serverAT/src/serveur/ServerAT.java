@@ -23,7 +23,7 @@ public class ServerAT {
         }
         // Erreur car déjà utilisé
         catch (IOException exception) {
-            System.err.println("Erreur, le port : "+ socket.getLocalPort()+" est déjà utilisé !");
+            System.err.println("Erreur, le port est déjà utilisé !");
         }
     }
 
