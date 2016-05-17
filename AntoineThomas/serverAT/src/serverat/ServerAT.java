@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class ServerAT {
+
     private final BaseDeDonnee bdd;
     private final JSONParser parser;
 
@@ -32,21 +33,28 @@ public class ServerAT {
         Socket socks;
         BufferedReader in;
         PrintWriter out;
+
         try {
             serv = new ServerSocket(9999);
-            socks = serv.accept();
-            in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
-            System.out.println(socks.getInetAddress() + " Connecté");
-            String recu = in.readLine();
-            JSONObject reponse = managecall(recu);
-            System.out.println("recu : " + recu);
-            System.out.println("reponse : " + reponse.toJSONString());
+            System.out.println("Server LAUNCH FAGGOT !");
+            while (true) {
+                socks = serv.accept();
+                in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
+                System.out.println(socks.getInetAddress() + " Connecté");
+                String recu = in.readLine();
 
-            out = new PrintWriter(socks.getOutputStream());
-            out.println(reponse.toJSONString());
-            out.flush();
+                if (recu.equalsIgnoreCase("quit")) {
+                    break;
+                }
+                JSONObject reponse = managecall(recu);
+                System.out.println("recu : " + recu);
+                System.out.println("reponse : " + reponse.toJSONString());
 
-            socks.close();
+                out = new PrintWriter(socks.getOutputStream());
+                out.println(reponse.toJSONString());
+                out.flush();
+                socks.close();
+            }
             serv.close();
 
         } catch (IOException e) {

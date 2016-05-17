@@ -17,22 +17,21 @@ public class ClientAT {
 
     public static void main(String[] zero) {
         Socket socks;
-        BufferedReader in;
+        BufferedReader in = null;
         PrintWriter out;
         
         try {
             socks = new Socket("localhost",9999);
             System.out.println("Connecté");            
             out = new PrintWriter(socks.getOutputStream());
-            Idee idee = new Idee();
-            JSONObject o = idee.toJSON();
-
+     
+            JSONObject o = getStandardIdee();
             out.println(o.toString());
             out.flush();
-            in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
-            String message = in.readLine();
-            System.out.println(message);
+            
+            confirm(in, socks);
             socks.close();
+            
         }catch (UnknownHostException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -40,19 +39,23 @@ public class ClientAT {
         }
     }
     
-    private JSONObject getAction(String ask) throws Exception {
-        JSONObject action = new JSONObject();
-        if(ask.equalsIgnoreCase("list")) {
-            action.put("action", "LIST");
-        } else if(ask.equalsIgnoreCase("participe")) {
-            action.put("action", "PARTICIPE");
-        } else if(ask.equalsIgnoreCase("add")) {
-            action.put("action", "ADD");
-        } else {
-            throw new Exception("Unknown action");
-        }
-        return action;
+    private static void confirm(BufferedReader in, Socket socks) throws IOException {
+        in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
+        String message = in.readLine();
+        System.out.println(message);
+            
     }
+    
+    private static JSONObject  getStandardIdee() {
+        return new Idee("titre", "nom" ,"mail", "description").toJSON();
+    }
+    
+    private static JSONObject getStandardList() {
+        JSONObject pa = new JSONObject();
+        pa.put("request", "list");
+        return pa;
+    }
+    
 
 }
 

@@ -23,6 +23,16 @@ public class Idee {
         saisieInfo();
     }
 
+    public Idee(String titre, String nom, String mail, String description) {
+        this.titre = titre;
+        this.nom = nom;
+        this.mail = mail;
+        this.description = description;
+        technos = new ArrayList<String>();
+    }
+    
+    
+
     public void saisieInfo() {
         Scanner scan = new Scanner(System.in);
         System.out.println("----| Création d'une nouvelle idée |----");
