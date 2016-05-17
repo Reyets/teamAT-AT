@@ -8,6 +8,7 @@ package clientat;
 import java.io.*;
 import java.net.*;
 import org.json.simple.JSONObject;
+import requetesmodele.Idee;
 
 /**
  * @author chronos
@@ -23,9 +24,9 @@ public class ClientAT {
             socks = new Socket("localhost",9999);
             System.out.println("Connecté");            
             out = new PrintWriter(socks.getOutputStream());
-            JSONObject o = new JSONObject();
-            o.put("action", "list");
-            out.println(o.toJSONString());
+            Idee idee = new Idee();
+            JSONObject o = idee.toJSON();
+            out.println(o.toString());
             out.flush();
             in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
             String message = in.readLine();
