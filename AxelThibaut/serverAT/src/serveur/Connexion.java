@@ -7,26 +7,29 @@ import java.net.*;
  * Auteur : Axel Aiello
  * Class pour accepter la connexion
  */
-public class Accepter_connexion implements Runnable{
+public class Connexion implements Runnable{
 
     private ServerSocket socketserver = null;
     private Socket socket = null;
+    private int number;
     public Thread thread1;
-    public Accepter_connexion(ServerSocket ss){
+    public Connexion(ServerSocket ss){
         socketserver = ss;
+        number = -1;
     }
 
     public void run() {
         try {
             while(true){
+                number++;
                 socket = socketserver.accept();
-                System.out.println("Un utilisateur est connecté");
+                System.out.println("L'utilisateur n°" + number + " est connecté.");
 
-                thread1 = new Thread(new Authentification(socket));
+                thread1 = new Thread(new Commande(socket, number));
                 thread1.start();
             }
         } catch (IOException e) {
-            System.err.println("ERROR SERVER");
+            System.err.println("Erreur de connexion");
         }
     }
 
