@@ -23,7 +23,7 @@ public class Participant {
     public Participant(JSONObject o, int id) {
         this.identifiant = id;
         this.nom = (String) o.get("nom");
-        this.email = (String) o.get("email");
+        this.email = (String) o.get("mail");
     }
 
     public String getEmail() {
@@ -37,7 +37,7 @@ public class Participant {
         JSONObject data = new JSONObject();
         data.put("identifiant", identifiant);
         data.put("nom", nom);
-        data.put("email", email);
+        data.put("mail", email);
         part.put("participant", data);
         return part;
     }
