@@ -28,15 +28,20 @@ public class Worker implements Runnable {
 
     private final BaseDeDonnee bdd;
     private final JSONParser parser;
-    private Socket socks;
+    private final Socket socks;
+    private final ManageConnect parent;
+    private final int id;
     private BufferedReader in;
     private PrintWriter out;
 
-    public Worker(Socket s, BaseDeDonnee bdd) {
+    public Worker(Socket s, BaseDeDonnee bdd, ManageConnect mg) {
         socks = s;
         this.bdd = bdd;
+        this.parent = mg;
+        id = mg.getNbclient()+1000;
         parser = new JSONParser();
     }
+
 
     @Override
     public void run() {
@@ -44,10 +49,11 @@ public class Worker implements Runnable {
             while (true) {                
                 in = new BufferedReader(new InputStreamReader(socks.getInputStream()));
                 String recu = in.readLine();
-                if (recu.equalsIgnoreCase("quit")) {
+                if (recu == null || recu.equalsIgnoreCase("quit")) {
+                    parent.OneClientTakeTheDoor();
                     break;
                 }
-
+                
                 JSONObject a = new JSONObject();
                 a.put("request", "list");
                 JSONObject reponse = managecall(recu);
