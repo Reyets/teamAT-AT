@@ -13,6 +13,7 @@ public class Connexion implements Runnable{
     private Socket socket = null;
     private int number;
     public Thread thread1;
+
     public Connexion(ServerSocket ss){
         socketserver = ss;
         number = -1;
@@ -24,7 +25,6 @@ public class Connexion implements Runnable{
                 number++;
                 socket = socketserver.accept();
                 System.out.println("L'utilisateur n°" + number + " est connecté.");
-
                 thread1 = new Thread(new Commande(socket, number));
                 thread1.start();
             }

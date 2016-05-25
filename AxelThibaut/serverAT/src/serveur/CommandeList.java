@@ -23,10 +23,15 @@ public class CommandeList implements Runnable {
 
     public void run() {
         try {
+            int i = 0;
             String message = "";
             Scanner sc = new Scanner(new File("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/idea.txt"));
             while (sc.hasNext()) {
-                message = message + "{\"idee\":" + sc.nextLine() + "},";
+                String msg = sc.nextLine();
+                msg = msg.substring(0, msg.length() - 1);
+                msg = msg + ",\"identifiant\":" + i;
+                message = message + "{\"idee\":" + msg + "}},";
+                i++;
             }
             if (!message.equals("{\"list\":[")) {message = message.substring(0, message.length() - 1);}
             printerMessaget(message);

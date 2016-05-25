@@ -1,8 +1,11 @@
 package openclass2;
 
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.Scanner;
-import java.io.*;
 
 public class Connexion implements Runnable {
 
@@ -15,7 +18,6 @@ public class Connexion implements Runnable {
     private boolean connect = false;
 
     public Connexion(Socket s){
-
         socket = s;
     }
 

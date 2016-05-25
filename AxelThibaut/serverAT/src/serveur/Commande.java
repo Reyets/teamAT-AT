@@ -18,6 +18,7 @@ public class Commande implements Runnable {
     private BufferedReader in = null;
     private String order = "";
     private int number;
+    public Thread thread1;
 
     public Commande(Socket s, int number){
         socket = s;
@@ -33,7 +34,6 @@ public class Commande implements Runnable {
                 //out.println("Entrez votre demande :");
                 //out.flush();
                 order = in.readLine();
-
                 Validation(order, out);
             }
 
@@ -55,7 +55,8 @@ public class Commande implements Runnable {
              * Exemples de retour : {"status":"OK"} ou {"status":"BAD REQUEST"}
              */
             if (request.equals("ADD")) {
-                new CommandeAdd(json, out);
+                thread1 = new Thread(new CommandeAdd(json, out));
+                thread1.start();
                 return;
             }
 
@@ -79,7 +80,8 @@ public class Commande implements Runnable {
                  * Exemples de retour : {"idee":["server java","server java2","server java3"],"status":"OK"} ou {"status":"BAD REQUEST"}
                  */
                 catch (JSONException e) {
-                    new CommandeList(json, out);
+                    thread1 = new Thread(new CommandeList(json, out));
+                    thread1.start();
                     return;
                 }
 

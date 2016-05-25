@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
+
 
 public class Emission implements Runnable {
 
     private PrintWriter out;
-    private String login = null, message = null;
+    private String message = null;
     private Scanner sc = null;
 
     public Emission(PrintWriter out) {
@@ -92,11 +94,15 @@ public class Emission implements Runnable {
     public void run() {
 
         sc = new Scanner(System.in);
-
         while(true){
             message = giveInfo();
             out.println(message);
             out.flush();
+            try {
+                sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
