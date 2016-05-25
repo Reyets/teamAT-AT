@@ -57,8 +57,8 @@ public class Worker implements Runnable {
                 JSONObject a = new JSONObject();
                 a.put("request", "list");
                 JSONObject reponse = managecall(recu);
-                System.out.println("recu : " + recu);
-                System.out.println("reponse : " + reponse.toJSONString());
+                System.out.println("Le client numero " + id + " a recu : " + recu);
+                System.out.println("Le client numero " + id + " repond : " + reponse.toJSONString());
 
                 out = new PrintWriter(socks.getOutputStream());
                 out.println(reponse.toJSONString());
