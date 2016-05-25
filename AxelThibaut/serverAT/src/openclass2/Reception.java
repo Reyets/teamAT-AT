@@ -55,8 +55,8 @@ public class Reception implements Runnable {
                         System.out.println("IDEE N°" + idea.getInt("identifiant"));
                         System.out.println("   - Titre : " + idea.getString("titre"));
                         System.out.println("   - Description : " + idea.getString("description"));
-                        System.out.println("   - Nom de l'auteur : " + idea.getString("nom"));
-                        System.out.println("   - Mail de l'auteur : " + idea.getString("mail"));
+                        //System.out.println("   - Nom de l'auteur : " + idea.getString("nom"));
+                        //System.out.println("   - Mail de l'auteur : " + idea.getString("mail"));
                         if (idea.getJSONArray("technologies").length() != 0) {
                             System.out.println("   - Technologie(s) : ");
                             for (int g = 0; g < idea.getJSONArray("technologies").length(); g++) {
@@ -70,7 +70,7 @@ public class Reception implements Runnable {
                                 JSONObject part  = participants.getJSONObject(g).getJSONObject("participant");
                                 System.out.println("         - identifiant : " + part.getInt("identifiant"));
                                 System.out.println("         - nom : " + part.getString("nom"));
-                                System.out.println("         - email : " + part.getString("email")+"\n");
+                                System.out.println("         - mail : " + part.getString("mail")+"\n");
 
                             }
                         }

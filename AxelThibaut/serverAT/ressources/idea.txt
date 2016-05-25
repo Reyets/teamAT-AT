@@ -1,2 +1,1 @@
-{"technologies":["chant","dansey","décor","du gout"],"mail":"moi.com","titre":"serveur","description":"moi+toi + tout ce qui le veuuuuule","nom":"moi","interesses":[{"participant":{"identifiant":0,"nom":"moi","email":"moi.com"}}]}
-{"technologies":["youpi"],"mail":"thibaut.com","titre":"coucou","description":"un test","nom":"thibaut","interesses":[{"participant":{"identifiant":1,"nom":"thibaut","email":"thibaut.com"}}]}
+{"technologies":[],"mail":"a","titre":"a","description":"a","nom":"a","interesses":[{"participant":{"identifiant":0,"nom":"a","mail":"a"}}]}

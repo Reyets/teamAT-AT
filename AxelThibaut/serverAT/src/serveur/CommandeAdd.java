@@ -32,13 +32,13 @@ public class CommandeAdd implements Runnable {
                     while (sc.hasNext()) {
                         String msg = sc.nextLine();
                         JSONObject participant = new JSONObject(msg);
-                        if (participant.getJSONObject("participant").getString("nom").equals(idee.getString("nom")) && participant.getJSONObject("participant").getString("email").equals(idee.getString("mail"))) {
+                        if (participant.getJSONObject("participant").getString("nom").equals(idee.getString("nom")) && participant.getJSONObject("participant").getString("mail").equals(idee.getString("mail"))) {
                             message = msg;
                         }
                         i++;
                     }
                     if (message.equals("")) {
-                        message = "{\"participant\":{\"identifiant\":" + i + ",\"nom\":\"" + idee.getString("nom") + "\",\"email\":\"" + idee.getString("mail") + "\"}}";
+                        message = "{\"participant\":{\"identifiant\":" + i + ",\"nom\":\"" + idee.getString("nom") + "\",\"mail\":\"" + idee.getString("mail") + "\"}}";
                         FileWriter fx2 = new FileWriter("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/participant.txt", true);
                         fx2.write(message);
                         fx2.write("\n");

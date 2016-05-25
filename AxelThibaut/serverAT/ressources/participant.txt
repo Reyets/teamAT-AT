@@ -1,2 +1,1 @@
-{"participant":{"identifiant":0,"nom":"moi","email":"moi.com"}}
-{"participant":{"identifiant":1,"nom":"thibaut","email":"thibaut.com"}}
+{"participant":{"identifiant":0,"nom":"a","mail":"a"}}

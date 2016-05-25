@@ -114,7 +114,7 @@ LIST:(retourne toutes les idées)
 	"list":[
 		{"Idee":
 			{"technologies":["JAVA","JSON"],
-			"interesses":[{"Participant":{"identifiant":0,"nom":"Thomas Jalabert","email":"thom.jalabert@gmail"}},{"Participant":{"identifiant":1,"nom":"Antoine Steyer","email":"antoine.steyer@gmail"}}],
+			"interesses":[{"Participant":{"identifiant":0,"nom":"Thomas Jalabert","mail":"thom.jalabert@gmail"}},{"Participant":{"identifiant":1,"nom":"Antoine Steyer","mail":"antoine.steyer@gmail"}}],
 
 			"titre":"Server Java","identifiant":0,"description":"Petit projet client-serveur en java."}
 		},
