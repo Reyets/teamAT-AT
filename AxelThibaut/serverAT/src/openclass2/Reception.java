@@ -65,8 +65,13 @@ public class Reception implements Runnable {
                         }
                         if (idea.getJSONArray("interesses").length() != 0) {
                             System.out.println("   - Intéressé(s) : ");
-                            for (int g = 0; g < idea.getJSONArray("interesses").length(); g++) {
-                                //System.out.println("         - " + idea.getJSONArray("interesses").get(g).toString());
+                            JSONArray participants = idea.getJSONArray("interesses");
+                            for (int g = 0; g < participants.length(); g++) {
+                                JSONObject part  = participants.getJSONObject(g).getJSONObject("participant");
+                                System.out.println("         - identifiant : " + part.getInt("identifiant"));
+                                System.out.println("         - nom : " + part.getString("nom"));
+                                System.out.println("         - email : " + part.getString("email")+"\n");
+
                             }
                         }
                         System.out.println();

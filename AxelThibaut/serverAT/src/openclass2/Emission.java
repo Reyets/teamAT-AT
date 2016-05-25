@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-import static java.lang.Thread.sleep;
 
 
 public class Emission implements Runnable {
@@ -98,11 +97,7 @@ public class Emission implements Runnable {
             message = giveInfo();
             out.println(message);
             out.flush();
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         }
     }
 }

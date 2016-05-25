@@ -27,20 +27,20 @@ public class CommandeAdd implements Runnable {
             idee = json.getJSONObject("idee");
             System.out.println(1);
             try {
-                FileWriter fx = new FileWriter("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/idea.txt", true);
+                FileWriter fx = new FileWriter("serverAT/ressources/idea.txt", true);
                 try {
-                    Scanner sc = new Scanner(new File("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/participant.txt"));
+                    Scanner sc = new Scanner(new File("serverAT/ressources/participant.txt"));
                     while (sc.hasNext()) {
                         String msg = sc.nextLine();
                         JSONObject participant = new JSONObject(msg);
-                        if (participant.getJSONObject("Participant").getString("nom").equals(idee.getString("nom")) && participant.getJSONObject("Participant").getString("email").equals(idee.getString("mail"))) {
+                        if (participant.getJSONObject("participant").getString("nom").equals(idee.getString("nom")) && participant.getJSONObject("participant").getString("email").equals(idee.getString("mail"))) {
                             message = msg;
                         }
                         i++;
                     }
                     if (message.equals("")) {
-                        message = "{\"Participant\":{\"identifiant\":" + i + ",\"nom\":\"" + idee.getString("nom") + "\",\"email\":\"" + idee.getString("mail") + "\"}}";
-                        FileWriter fx2 = new FileWriter("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/participant.txt", true);
+                        message = "{\"participant\":{\"identifiant\":" + i + ",\"nom\":\"" + idee.getString("nom") + "\",\"email\":\"" + idee.getString("mail") + "\"}}";
+                        FileWriter fx2 = new FileWriter("serverAT/ressources/participant.txt", true);
                         fx2.write(message);
                         fx2.write("\n");
                         fx2.close();
@@ -49,8 +49,7 @@ public class CommandeAdd implements Runnable {
                     printerBadRequest();
                 }
                 String msg = idee.toString().substring(1,idee.toString().length() - 1);
-                msg = "{" + msg + ",\"interesses\":[\"" +  message + "\"]}";
-                //{"Participant":{"identifiant":0,"nom":"Thomas Jalabert","email":"thom.jalabert@gmail"}}
+                msg = "{" + msg + ",\"interesses\":[" +  message + "]}";
                 fx.write(msg);
                 fx.write("\n");
                 fx.close();

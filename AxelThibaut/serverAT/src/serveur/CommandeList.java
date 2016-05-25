@@ -25,7 +25,7 @@ public class CommandeList implements Runnable {
         try {
             int i = 0;
             String message = "";
-            Scanner sc = new Scanner(new File("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/idea.txt"));
+            Scanner sc = new Scanner(new File("serverAT/ressources/idea.txt"));
             while (sc.hasNext()) {
                 String msg = sc.nextLine();
                 msg = msg.substring(0, msg.length() - 1);
