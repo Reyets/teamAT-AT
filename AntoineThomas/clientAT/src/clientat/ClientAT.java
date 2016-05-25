@@ -88,11 +88,13 @@ public class ClientAT {
                 break;
             case "help":
                 printhelp();
+                commande = null;
                 break;
             case "quit":
                 return false;
             default :
                 printBadResquest();
+                commande = null;
                 break;
         }
         return true;
