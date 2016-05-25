@@ -25,7 +25,7 @@ public class Connexion implements Runnable{
                 number++;
                 socket = socketserver.accept();
                 System.out.println("L'utilisateur n°" + number + " est connecté.");
-                thread1 = new Thread(new Commande(socket, number));
+                thread1 = new Thread(new Parseur(socket, number));
                 thread1.start();
             }
         } catch (IOException e) {

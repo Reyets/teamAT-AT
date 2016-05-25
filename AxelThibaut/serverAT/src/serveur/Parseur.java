@@ -11,7 +11,7 @@ import java.io.*;
  * Auteur : Axel Aiello
  * Class pour parser les commandes
  */
-public class Commande implements Runnable {
+public class Parseur implements Runnable {
 
     private Socket socket;
     private PrintWriter out = null;
@@ -20,7 +20,7 @@ public class Commande implements Runnable {
     private int number;
     public Thread thread1;
 
-    public Commande(Socket s, int number){
+    public Parseur(Socket s, int number){
         socket = s;
         this.number = number;
     }
@@ -31,8 +31,6 @@ public class Commande implements Runnable {
             out = new PrintWriter(socket.getOutputStream());
 
             while(true){
-                //out.println("Entrez votre demande :");
-                //out.flush();
                 order = in.readLine();
                 Validation(order, out);
             }

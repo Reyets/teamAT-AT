@@ -25,11 +25,10 @@ public class CommandeAdd implements Runnable {
             int i = 0;
             String message = "";
             idee = json.getJSONObject("idee");
-            System.out.println(1);
             try {
-                FileWriter fx = new FileWriter("serverAT/ressources/idea.txt", true);
+                FileWriter fx = new FileWriter("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/idea.txt", true);
                 try {
-                    Scanner sc = new Scanner(new File("serverAT/ressources/participant.txt"));
+                    Scanner sc = new Scanner(new File("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/participant.txt"));
                     while (sc.hasNext()) {
                         String msg = sc.nextLine();
                         JSONObject participant = new JSONObject(msg);
@@ -40,7 +39,7 @@ public class CommandeAdd implements Runnable {
                     }
                     if (message.equals("")) {
                         message = "{\"participant\":{\"identifiant\":" + i + ",\"nom\":\"" + idee.getString("nom") + "\",\"email\":\"" + idee.getString("mail") + "\"}}";
-                        FileWriter fx2 = new FileWriter("serverAT/ressources/participant.txt", true);
+                        FileWriter fx2 = new FileWriter("D:/Projets/teamAT-AT/AxelThibaut/serverAT/ressources/participant.txt", true);
                         fx2.write(message);
                         fx2.write("\n");
                         fx2.close();

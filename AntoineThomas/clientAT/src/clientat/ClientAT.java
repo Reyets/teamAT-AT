@@ -66,7 +66,7 @@ public class ClientAT {
     }
 
     private void printBadResquest() {
-        System.out.println("Commande non disponible");
+        System.out.println("Parseur non disponible");
         System.out.println();
     }
 
