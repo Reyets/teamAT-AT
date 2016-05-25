@@ -54,8 +54,6 @@ public class Idee {
     }
 
     public JSONObject toJSON() {
-        JSONObject result = new JSONObject();
-
         JSONObject idee = new JSONObject();
         idee.put("titre",titre);
         idee.put("nom",nom);
@@ -66,9 +64,6 @@ public class Idee {
             techs.add(tech);
         }
         idee.put("technologies",techs);
-
-        result.put("idee",idee);
-        result.put("request","ADD");
-        return result;
+        return idee;
     }
 }

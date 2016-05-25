@@ -17,7 +17,7 @@ import requetesmodele.Idee;
  */
 public class ClientAT {
 
-    private JSONObject commande;
+    private static JSONObject commande;
 
     public static void main(String[] zero) {
         ClientAT client = new ClientAT();
@@ -37,9 +37,11 @@ public class ClientAT {
 //            confirm(in, socks);
 
             while (client.getSaisie()) {
-                out.println(client.getCommande().toString());
-                out.flush();
-                confirm(in, socks);
+                if(commande != null) {
+                    out.println(client.getCommande().toString());
+                    out.flush();
+                    confirm(in, socks);
+                }
             }
             out.println("quit");
             out.flush();
@@ -64,11 +66,18 @@ public class ClientAT {
     }
 
     private void printhelp() {
+        System.out.println();
         System.out.println("Commandes disponibles : ");
-        System.out.println("\t- add");
-        System.out.println("\t- participe");
-        System.out.println("\t- list");
-        System.out.println("\t- quit");
+        System.out.println("\t- add : ajouter une idée");
+        System.out.println("\t- participe : participer à une idée");
+        System.out.println("\t- list : affiche la liste des idées");
+        System.out.println("\t- help : affiche les commandes disponibles");
+        System.out.println("\t- quit : quitter le serveur");
+        System.out.println();
+    }
+
+    private void printBadResquest() {
+        System.out.println("Commande non disponible");
         System.out.println();
     }
 
@@ -92,13 +101,19 @@ public class ClientAT {
                 break;
             case "quit":
                 return false;
+            default :
+                printBadResquest();
+                break;
         }
         return true;
     }
 
     private JSONObject creerIdee() {
         Idee idee = new Idee();
-        return idee.toJSON();
+        JSONObject result = new JSONObject();
+        result.put("idee",idee.toJSON());
+        result.put("request","ADD");
+        return result;
     }
 
     private JSONObject creerParticipation() {
