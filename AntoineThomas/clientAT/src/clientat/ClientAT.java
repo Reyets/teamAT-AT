@@ -26,7 +26,7 @@ public class ClientAT {
         PrintWriter out;
 
         try {
-            socks = new Socket("localhost", 9999);
+            socks = new Socket("10.212.121.147", 9999);
             System.out.println("Connecté");
             out = new PrintWriter(socks.getOutputStream());
 
@@ -61,7 +61,6 @@ public class ClientAT {
         System.out.println("\t- add : ajouter une idée");
         System.out.println("\t- participe : participer à une idée");
         System.out.println("\t- list : affiche la liste des idées");
-        System.out.println("\t- help : affiche les commandes disponibles");
         System.out.println("\t- quit : quitter le serveur");
         System.out.println();
     }
@@ -85,10 +84,6 @@ public class ClientAT {
                 break;
             case "list":
                 commande = liste();
-                break;
-            case "help":
-                printhelp();
-                commande = null;
                 break;
             case "quit":
                 return false;
