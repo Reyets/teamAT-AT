@@ -42,12 +42,9 @@ public class Reception implements Runnable {
                 e.printStackTrace();
             }
 
-
-
             JSONObject answer =  new JSONObject(message);
+
             String status = answer.getString("status");
-
-
 
             if(status.equals("OK")){
                 if(answer.has("list")) {//check if list exist
@@ -55,20 +52,30 @@ public class Reception implements Runnable {
                     for (int i = 0; i < list.length(); i++) {
                         JSONObject idea = list.getJSONObject(i).getJSONObject("idee");
                         //System.out.println(idea);
-                        System.out.println("titre : " + idea.getString("titre"));
-                        System.out.println("description : " + idea.getString("description"));
-                        System.out.println("technologies : " + idea.getJSONArray("technologies"));
-                        //System.out.println("participants : " + idea.getJSONArray("interesses"));
+                        System.out.println("IDEE N°" + idea.getInt("identifiant"));
+                        System.out.println("   - Titre : " + idea.getString("titre"));
+                        System.out.println("   - Description : " + idea.getString("description"));
+                        System.out.println("   - Nom de l'auteur : " + idea.getString("nom"));
+                        System.out.println("   - Mail de l'auteur : " + idea.getString("mail"));
+                        if (idea.getJSONArray("technologies").length() != 0) {
+                            System.out.println("   - Technologie(s) : ");
+                            for (int g = 0; g < idea.getJSONArray("technologies").length(); g++) {
+                                System.out.println("         - " + idea.getJSONArray("technologies").get(g));
+                            }
+                        }
+                        if (idea.getJSONArray("interesses").length() != 0) {
+                            System.out.println("   - Intéressé(s) : ");
+                            for (int g = 0; g < idea.getJSONArray("interesses").length(); g++) {
+                                //System.out.println("         - " + idea.getJSONArray("interesses").get(g).toString());
+                            }
+                        }
+                        System.out.println();
                     }
                 }
             }
 
             System.out.println(status);
 
-/*
-                message = in.readLine();
-                System.out.println(message);
-*/
         }
     }
 

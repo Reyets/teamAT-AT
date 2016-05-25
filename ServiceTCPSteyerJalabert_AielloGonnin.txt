@@ -10,8 +10,8 @@ Description du protocole Client-Server utilisant la sérialisation chaine.
 
 
 Utilisation du format JSON pour la structure de transfert.
-Les requêtes client ont un mot clé action:requête
-Les requêtes server ont un mot clé status:requête
+Les requêtes client ont un mot clé action : requête
+Les requêtes server ont un mot clé status : requête
 
 Structure Participant :
 	- Identifiant
@@ -69,7 +69,7 @@ PARTICIPE:
 	"idee":
 		{
 		"identifiant":5
-		"mail":"thibaut.gonnin@gmail.com"
+		0
 		},
 	"request":"PARTICIPE"
 }

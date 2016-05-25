@@ -16,7 +16,6 @@ public class ServeurAT {
         try {
             socket = new ServerSocket(2009);
             System.out.println("Le serveur est sur le port "+ socket.getLocalPort() + ".");
-
             thread = new Thread(new Connexion(socket));
             thread.start();
 
