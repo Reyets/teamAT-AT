@@ -28,9 +28,7 @@ public class Participant {
 
     public String getEmail() {
         return email;
-    }
-    
-    
+    }   
 
     public JSONObject toJSON() {
         JSONObject part = new JSONObject();

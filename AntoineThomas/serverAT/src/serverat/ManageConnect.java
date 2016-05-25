@@ -19,7 +19,8 @@ public class ManageConnect implements Runnable{
     private Socket socks;
     ServerSocket serv;
     BaseDeDonnee bdd = new BaseDeDonnee();
-    private int nbclient;
+    private int nbclient;    
+    
     public ManageConnect(ServerSocket ss, BaseDeDonnee bdd){
         socks_serv = ss;
         this.bdd = bdd;
@@ -33,14 +34,25 @@ public class ManageConnect implements Runnable{
             while(true){                
                 socks = socks_serv.accept();
                 nbclient++;
-                System.out.println("Il y a eu " + nbclient + " connections différentes.");
+                System.out.println("Il y a actuellement " + nbclient + " clients connectés.");
 
-                Thread newclient = new Thread(new Worker(socks, bdd));
+                Thread newclient = new Thread(new Worker(socks, bdd, this));
                 newclient.start();
-                
             }
         } catch (IOException e) {
             System.err.println("Erreur de connexion");
         }
     }
+    
+    
+    public int getNbclient() {
+        return nbclient;
+    }
+
+    public void OneClientTakeTheDoor() {
+        this.nbclient--;
+        System.out.println("Un client viens de prendre la sortie de secours.\nIl y a donc " + nbclient + " clients connectés.");
+        
+    }
+    
 }
