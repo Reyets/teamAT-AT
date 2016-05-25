@@ -42,7 +42,6 @@ public class Emission implements Runnable {
         do{
             System.out.println("Voulez vous rajouter une technologie ? (y or n):");
             char ch = sc.nextLine().charAt(0);
-            System.out.println(str);
             if(ch == 'y'){
                 bool = true;
                 System.out.println("Quel est le nom de la technologie ?");
