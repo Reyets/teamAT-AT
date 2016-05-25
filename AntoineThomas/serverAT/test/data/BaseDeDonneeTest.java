@@ -31,14 +31,7 @@ public class BaseDeDonneeTest {
         idempty = new Idee(1, "Server Java2", "Petit projet client-serveur en java.", technos, new ArrayList<>());
     }
 
-    /**
-     * Test of addIdee method, of class BaseDeDonnee.
-     */
-    @Test
-    public void testAddIdee() {
-        bdd.addIdee(id);
-        assertFalse(bdd.getIdees().isEmpty());
-    }
+
 
     /**
      * Test of getParticipantsInteresses method, of class BaseDeDonnee.
@@ -49,34 +42,5 @@ public class BaseDeDonneeTest {
         assertFalse(id.getInteresses().isEmpty());
     }
     
-     @Test
-    public void testgetJSONList() {
-        
-        System.out.println(bdd.getJSONList());
-        bdd.addIdee(id);
-        bdd.addIdee(idempty);
-        System.out.println(bdd.getJSONList());
-    }
-    
-     @Test
-    public void testgetJSONListID() {
-        bdd.addIdee(id);
-        bdd.addIdee(idempty);
-        try {
-            System.out.println(bdd.getJSONList(1));
-        } catch (Exception ex) {
-            Logger.getLogger(BaseDeDonneeTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    @Test
-    public void testaddInteresse() {
-        bdd.addIdee(id);
-        bdd.addIdee(idempty);
-        Participant p = new Participant("toto", "email@gmail.com", 5);
-        idempty.addInteresse(p);
-        System.out.println(idempty.toJSON());
-        
-    }
     
 }

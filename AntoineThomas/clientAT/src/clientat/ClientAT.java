@@ -55,10 +55,6 @@ public class ClientAT {
 
     }
 
-    private static JSONObject getStandardIdee() {
-        return new Idee("titre", "nom", "mail", "description").toJSON();
-    }
-
     private void printhelp() {
         System.out.println();
         System.out.println("Commandes disponibles : ");
@@ -137,12 +133,6 @@ public class ClientAT {
     private JSONObject getCommande() {
         return commande;
 
-    }
-
-    private static JSONObject getStandardList() {
-        JSONObject pa = new JSONObject();
-        pa.put("request", "list");
-        return pa;
     }
 
 }

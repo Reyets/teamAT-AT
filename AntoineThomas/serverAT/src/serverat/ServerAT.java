@@ -14,7 +14,7 @@ public class ServerAT {
             serv = new ServerSocket(9999);
             Thread t = new Thread(new ManageConnect(serv, bdd));
             t.start();
-            System.out.println("SERVER LAUNCH FAGGOT !");
+            System.out.println("SERVER LAUNCH !");
 
         } catch (IOException e) {
             e.printStackTrace();

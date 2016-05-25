@@ -50,13 +50,13 @@ public class Idee {
         data.put("description", description);
 
         JSONArray techno = new JSONArray();
-        for (String techo : technologies) {
+        for(String techo : technologies) {
             techno.add(techo);
         }
         data.put("technologies", techno);
 
         JSONArray interet = new JSONArray();
-        for (Participant parti : interesses) {
+        for(Participant parti : interesses) {
             interet.add(parti.toJSON());
         }
         data.put("interesses", interet);

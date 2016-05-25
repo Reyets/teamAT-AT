@@ -51,7 +51,7 @@ public class ManageConnect implements Runnable{
 
     public void OneClientTakeTheDoor() {
         this.nbclient--;
-        System.out.println("Un client viens de prendre la sortie de secours.\nIl y a donc " + nbclient + " clients connectés.");
+        System.out.println("Un client a arrété la connection.\nIl y a donc " + nbclient + " clients connectés.");
         
     }
     

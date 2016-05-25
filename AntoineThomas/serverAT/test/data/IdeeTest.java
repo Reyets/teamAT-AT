@@ -29,15 +29,7 @@ public class IdeeTest {
         participants.add(new Participant("Antoine Steyer", "antoine.steyer@gmail", 1));
         id = new Idee(0, "Server Java", "Petit projet client-serveur en java.", technos, participants);
     }
-//{"Participant":{"technologies":
-    //["JAVA","JSON",
-    //{"Participant":{"identifiant":0,"nom":"Thomas Jalabert","email":"thom.jalabert@gmail"}},
-    //{"Participant":{"identifiant":1,"nom":"Antoine Steyer","email":"antoine.steyer@gmail"}}]
-    //,"interesses":[],"titre":"titre","identifiant":0,"description":"description"}}
 
-    /**
-     * Test of toString method, of class Idee.
-     */
     @Test
     public void testToString() {
         System.out.println(id.toJSON().toJSONString());
